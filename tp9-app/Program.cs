@@ -2,16 +2,14 @@
 using System.Text.Json; 
 using System.Text.Json.Serialization;
 
-
-
 const int N = 7;
-
 
 // Console.WriteLine("Ingrese la ruta: ");
 // string ruta = Console.ReadLine();
 string rutaScan = @"..\root";
 string nombreDestino = @"..\datos\index.json";
 string nombreDestino2 = @"..\datos\productos.json";
+
 
 //1) Indexador de carpeta (formato json)
 
@@ -28,15 +26,16 @@ guardarJson(nombreDestino, archivosJson);
 /* Genero lista de objetos Productos */
 var listaProductos = generarProductos();
 /* Serializo la lista de Productos */
-
+string productosJson = JsonSerializer.Serialize(listaProductos);
 /* Guardo en archivo .json la lista Productos*/ 
-
+guardarJson(nombreDestino2, productosJson);
 /* Deserializar json en una lista */
 
 /* Mostrar por consola lista de productos */
 
 
-//1) Métodos 
+/* FUNCIONES */
+//1)
 static List<Archivo> generarListaArchivos(string rutaScan) 
 {
     var listaCarpetas = Directory.GetDirectories(rutaScan).ToList();
@@ -56,18 +55,21 @@ static List<Archivo> generarListaArchivos(string rutaScan)
     }
     return listaArchivos;
 }
-//2)
+
+//2) Métodos para el punto 2:
 static List<Producto> generarProductos() 
 {
     var listaProductos = new List<Producto>();
     Producto nuevo;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < N; i++)
     {
-        
+        nuevo = new Producto();
+        nuevo.generarProducto();
+        listaProductos.Add(nuevo);
     }
-
-
+    return listaProductos;
 }
+
 static void guardarJson(string ruta, string datos)
     {
             using(var archivo = new FileStream(ruta, FileMode.Create))
