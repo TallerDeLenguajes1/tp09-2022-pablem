@@ -31,4 +31,8 @@ public class Producto
         Tamanio = tamaniosProductos(rnd.Next(0,tamaniosProductos.Count-1));
     }
 
+    public void mostrarProducto()
+    {
+        Console.WriteLine("Producto: {0}, Tamaño: {1}, Precio: {2}, Vto.: {3}",Nombre,Tamanio,Precio,Fechavencimiento);
+    }
 }
