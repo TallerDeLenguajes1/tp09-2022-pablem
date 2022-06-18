@@ -33,7 +33,7 @@ var productosCargados = abrirJson(nombreDestino);
 /* Deserializar y guardar en una lista */
 var listaProductosCargados = JsonSerializer.Deserialize<List<Producto>>(productosCargados);
 /* Mostrar por consola lista de productos */
-foreach (var producto in productosCargados) {
+foreach (var producto in listaProductosCargados) {
     producto.mostrarProducto();
 }
 
